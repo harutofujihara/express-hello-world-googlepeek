@@ -2,9 +2,13 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.get("/", (req, res) => res.type('html').send(html));
+app.use(express.static(__dirname+'/public'));
+
+// app.get("/", (req, res) => res.type('html').send(html));
+app.get("/", (req, res) => res.sendFile(__dirname + '/public/search.html'));
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.use(express.static(__dirname+'/public'));
 
 server.keepAliveTimeout = 120 * 1000;
 server.headersTimeout = 120 * 1000;
@@ -54,8 +58,9 @@ const html = `
   </head>
   <body>
     <section>
-      Hello from Render!
+      Hello from Render!!!!
     </section>
   </body>
 </html>
 `
+
